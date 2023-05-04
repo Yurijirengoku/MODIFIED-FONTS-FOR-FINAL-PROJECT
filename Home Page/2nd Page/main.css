@@ -1,0 +1,469 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Archivo Narrow", sans-serif;
+  /* font-family: "Philosopher", sans-serif;
+  font-family: "Space Grotesk", sans-serif; */
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+#wrapper {
+  width: 100%;
+  height: 100%;
+
+  background-image: url(library_seats.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  width: 97%;
+  height: 20%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background-clip: content-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+  z-index: 10;
+
+  backdrop-filter: blur(5px);
+}
+
+.kscj-logo {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex: none;
+  margin-left: 5%;
+}
+
+.kscj-logo a {
+  display: flex;
+  text-decoration: none;
+}
+
+.logo {
+  width: 40%;
+}
+.logo img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.kscj {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: antiquewhite;
+  margin-left: 5%;
+}
+.media-logo {
+  width: 15%;
+  height: 70%;
+  flex: none;
+  display: flex;
+  margin-right: 5%;
+}
+.facebk {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.facebk img {
+  display: inline-block;
+  width: 50%;
+  height: 50%;
+  margin-left: 30%;
+}
+.insta {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.insta img {
+  display: inline-block;
+  width: 50%;
+  height: 50%;
+  margin-right: 30%;
+}
+
+.container2 {
+  width: 100%;
+  height: 80%;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+
+  position: relative;
+}
+.left-div {
+  width: 60%;
+  height: 100%;
+
+  position: relative;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 135px 0px 15px 15px;
+  background: rgba(0, 0, 0, 0.8);
+  width: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.sidebar.active {
+  width: 21%; /* takes the width of base element since its position is 'fixed' */
+}
+
+.menuToggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  padding: 0 11px;
+  border-bottom: 2px solid rgba(0, 0, 0, 25);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuToggle::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  transform: translateY(-8px);
+  transition: 0.5s;
+}
+
+.sidebar.active .menuToggle::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.menuToggle::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  transform: translateY(8px);
+  box-shadow: 0 -8px 0 #fff;
+  transition: 0.5s;
+}
+
+.sidebar.active .menuToggle::after {
+  transform: translateY(0) rotate(-45deg);
+  box-shadow: 0 0 0 #fff;
+}
+
+.sidebar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  /* margin-top: 15%; */
+}
+
+.sidebar ul li {
+  display: flex;
+
+  list-style: none;
+  position: relative;
+  width: 90%;
+  height: 30px;
+  border-radius: 12px;
+  border: 8px solid transparent;
+  transition: 0.5s;
+}
+
+.sidebar ul li.active {
+  transform: translateX(30px);
+  background: var(--bg);
+  width: 75%;
+}
+
+.sidebar ul li.active::before {
+  right: -2px;
+  transform: scale(1);
+}
+
+.sidebar ul li.active::after {
+  right: -2px;
+  transform: scale(1);
+}
+
+.sidebar ul li a {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  z-index: 1000;
+
+  color: #fff;
+}
+
+.sidebar ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 35px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 1em;
+  line-height: 20px;
+  border: 6px solid transparent;
+  transition: 0.5s;
+}
+
+.sidebar ul li.active a .icon {
+  color: #fff;
+  background: var(--clr);
+}
+
+.sidebar ul li a .icon::before {
+  /* for the shadow below icon */
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--clr);
+  filter: blur(8px);
+  opacity: 0;
+}
+
+.sidebar ul li.active a .icon::before {
+  opacity: 0.5;
+}
+
+.sidebar ul li a .text {
+  position: relative;
+  padding: 0 15px;
+  color: #9ba4b5;
+  display: flex;
+  align-items: center;
+  height: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.sidebar.active ul li a .text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.sidebar ul li.active a .text {
+  color: #fff;
+}
+
+/* 2nd sidebar ends */
+
+/* sidebar ends */
+
+/* Dept starts */
+
+.Dept {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.image_Dept {
+  position: relative;
+  width: 60%;
+  height: 85%;
+  margin-left: 35%;
+  margin-top: 5%;
+  border: 1px solid transparent;
+  background-clip: content-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+}
+.image_Dept img {
+  position: relative;
+  display: flexbox;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  position: relative;
+  width: 60%;
+  height: 15%;
+  margin-top: -45%;
+  margin-left: -35%;
+}
+.title p {
+  font-size: 55px;
+  letter-spacing: 2px;
+  /* font-family: "Times New Roman", Times, serif; */
+  font-weight: 2000;
+  color: #fff;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+}
+.page-num {
+  position: relative;
+  width: 15%;
+  height: 15%;
+  margin-top: 15%;
+  marginb-left: 93%;
+}
+.page-num p {
+  font-size: 70px;
+  letter-spacing: 2px;
+  /* font-family: "Times New Roman", Times, serif; */
+  font-weight: 2000;
+  color: antiquewhite;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  flex: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+
+  backdrop-filter: blur(2px);
+}
+.library {
+  width: 40%;
+  height: 95%;
+  margin: auto;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+
+  border: 1px solid transparent;
+  background-clip: content-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+}
+::-webkit-scrollbar {
+  height: 14px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.8);
+}
+.container2::-webkit-scrollbar-track {
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  width: 60px;
+}
+.shelf {
+  width: 100%;
+  height: 100%;
+}
+.core {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  /* font-family: "Times New Roman", Times, serif; */
+  color: antiquewhite;
+}
+.core h1 {
+  font-size: x-large;
+  margin: auto;
+  font-weight: 1000;
+}
+.books {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 8%;
+}
+.col {
+  flex-basis: 25%;
+}
+.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.name_text {
+  font-size: small;
+  color: antiquewhite;
+  font-weight: bolder;
+  display: flex;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+}
+.image img {
+  display: inline-block;
+  flex: none;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  transition: 0.2s linear;
+}
+.image:hover img {
+  transform: scale(1.1);
+}
+.row2 {
+  width: 100%;
+  height: 40%;
+  margin-top: 5%;
+  display: flex;
+}
+.row2 .col {
+  margin-left: 4.3%;
+}
+
+.sem1 {
+  background-color: rgb(126, 126, 122);
+}
+.sem2 {
+  background-color: rgb(116, 116, 112);
+}
+.sem3 {
+  background-color: rgb(106, 106, 102);
+}
+.sem4 {
+  background-color: rgb(96, 96, 92);
+}
+.sem5 {
+  background-color: rgb(86, 86, 82);
+}
+.sem6 {
+  background-color: rgb(76, 76, 72);
+}
